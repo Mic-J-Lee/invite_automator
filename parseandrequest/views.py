@@ -9,7 +9,7 @@ import os
 def extract_username(body):
     target_phrase_index = body.find('Action Notes: Add ')
     index_of_pertinence = target_phrase_index + 18
-    end_of_pertinence = body.find(' to GitHub for Intro to Coding')
+    end_of_pertinence = body.find(' to GitHub for ')
     pertinent_string = body[index_of_pertinence:end_of_pertinence]
     username = ''
     if pertinent_string[0] == '@':
