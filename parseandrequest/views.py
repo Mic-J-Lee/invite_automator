@@ -42,5 +42,5 @@ def zapiertogithub(request):
     if username:
         invite.github_handle = username
     invite.save()
-    if invite.successful = True:
+    if invite.successful == True:
         return HttpResponse(status=204)
