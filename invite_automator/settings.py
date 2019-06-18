@@ -15,7 +15,7 @@ SECRET_KEY = 'e($bf!y)wfjwugf6b9j^)yph07zdw#7n^e(crr)sipwydbg_#d'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'afa39821.ngrok.io',
+    os.environ['HOST'],
 ]
 
 

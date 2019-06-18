@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Invite
 import requests
 import json
+import os
 
 
 def extract_username(body):
@@ -29,7 +30,7 @@ def zapiertogithub(request):
     url = ''
     if username:
         url = f'https://api.github.com/orgs/codeplatoon/memberships/{username}'
-    github_response_text = requests.put(url, auth=('GH_U','GH_T')).text
+    github_response_text = requests.put(url, auth=(os.environ['GH_U'],os.environ['GH_T'])).text
     github_response = json.loads(github_response_text)
     invite = Invite()
     if github_response['state'] in ['pending', 'active']:
