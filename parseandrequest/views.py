@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 from .models import Invite
 import requests
 import json
@@ -41,3 +42,5 @@ def zapiertogithub(request):
     if username:
         invite.github_handle = username
     invite.save()
+    if invite.successful = True:
+        return HttpResponse(status=204)
