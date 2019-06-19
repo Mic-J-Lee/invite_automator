@@ -31,12 +31,13 @@ def zapiertogithub(request):
     url = ''
     if username:
         url = f'https://api.github.com/orgs/codeplatoon/memberships/{username}'
-    github_response_text = requests.put(url, auth=(os.environ['GH_U'],os.environ['GH_T'])).text
+    github_response_text = requests.put(url, auth=(os.environ['GH_U'], os.environ['GH_T'])).text
     github_response = json.loads(github_response_text)
     invite = Invite()
-    if github_response['state'] in ['pending', 'active']:
-        invite.successful = True
-    else:
+    if 'state' in github_response:
+        if github_response['state'] in ['pending', 'active']:
+            invite.successful = True
+    if invite.successful == False:
         invite.zapier_payload = body
         invite.github_response = github_response_text
     if username:
